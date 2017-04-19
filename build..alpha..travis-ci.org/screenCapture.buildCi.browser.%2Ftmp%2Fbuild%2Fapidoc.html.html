@@ -118,7 +118,23 @@
   const json = JSON.parse(body);
   return json;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  this.create();
+  return;
+}
+
+let json;
+debug('parse %s', cookie);
+try {
+  json = opts.<span class="apidocCodeKeywordSpan">decode</span>(cookie);
+} catch (err) {
+  // backwards compatibility:
+  // create a new session if parsing fails.
+  // new Buffer(string, 'base64') does not seem to crash
+  // when `string` is not base64-encoded.
+  // but `JSON.parse(string)` will crash.
+  debug('decode %j error: %s', cookie, err);
+...</pre></li>
     </ul>
 
 
@@ -134,7 +150,23 @@
   body = JSON.stringify(body);
   return new Buffer(body).toString('base64');
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+      await this.store.set(externalKey, json, maxAge);
+      this.ctx.cookies.set(key, externalKey, opts);
+      return;
+    }
+
+    // save to cookie
+    debug('save %j to cookie', json);
+    json = opts.<span class="apidocCodeKeywordSpan">encode</span>(json);
+    debug('save %s', json);
+
+    this.ctx.cookies.set(key, json, opts);
+  }
+}
+
+module.exports = ContextSession;
+...</pre></li>
     </ul>
 
 
@@ -149,7 +181,22 @@
     <li>description and source-code<pre class="apidocCodePre">hash(sess) {
   return crc(JSON.stringify(sess));
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    // create a new `externalKey`
+    this.create();
+    return;
+  }
+
+  // create with original `externalKey`
+  this.create(json, externalKey);
+  this.prevHash = util.<span class="apidocCodeKeywordSpan">hash</span>(this.session.toJSON());
+}
+
+/**
+ * init session from cookie
+ * @api private
+ */
+...</pre></li>
     </ul>
 
 
