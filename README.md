@@ -1,6 +1,6 @@
 # npmdoc-koa-session
 
-#### api documentation for  [koa-session (v5.0.0)](https://github.com/koajs/session#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-koa-session.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-koa-session) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-koa-session.svg)](https://travis-ci.org/npmdoc/node-npmdoc-koa-session)
+#### basic api documentation for  [koa-session (v5.0.0)](https://github.com/koajs/session#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-koa-session.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-koa-session) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-koa-session.svg)](https://travis-ci.org/npmdoc/node-npmdoc-koa-session)
 
 #### Koa cookie session middleware
 
@@ -115,7 +115,8 @@
             },
             "pkgid": "koa-session@5.0.0"
         }
-    ]
+    ],
+    "bin": {}
 }
 ```
 
